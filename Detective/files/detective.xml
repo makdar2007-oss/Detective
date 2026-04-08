@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DetectiveData>
+  <Persons>
+    <Person>
+      <Id>1</Id>
+      <FullName>Эркюль Пуаро</FullName>
+      <Role>детектив</Role>
+      <Contact>
+        <Phone>+7 495 123-45-67</Phone>
+        <Email>poirot@detective.ru</Email>
+        <Address>Москва, ул. Тверская, д. 12, кв. 45</Address>
+      </Contact>
+      <Biometrics>
+        <Photo>poirot.jpg</Photo>
+        <FingerprintHash>fp_poirot_001</FingerprintHash>
+      </Biometrics>
+    </Person>
+    <Person>
+      <Id>2</Id>
+      <FullName>Сэмюэл Рэтчетт</FullName>
+      <Role>потерпевший</Role>
+      <Contact>
+        <Phone>+7 812 345-67-89</Phone>
+        <Email>ratchett@business.ru</Email>
+        <Address>Санкт-Петербург, Невский проспект, д. 45, кв. 12</Address>
+      </Contact>
+      <Biometrics>
+        <Photo>ratchett.jpg</Photo>
+        <FingerprintHash>fp_ratchett_002</FingerprintHash>
+      </Biometrics>
+    </Person>
+    <Person>
+      <Id>3</Id>
+      <FullName>Кокина Вероника</FullName>
+      <Role>подозреваемый</Role>
+      <Contact>
+        <Phone>+7 843 256-78-90</Phone>
+        <Email>veronika@mail.ru</Email>
+        <Address>Казань, ул. Баумана, д. 23, кв. 8</Address>
+      </Contact>
+      <Biometrics>
+        <Photo>veronika.jpg</Photo>
+        <FingerprintHash>fp_veronika_003</FingerprintHash>
+      </Biometrics>
+    </Person>
+    <Person>
+      <Id>4</Id>
+      <FullName>Кабиров Артур</FullName>
+      <Role>подозреваемый</Role>
+      <Contact>
+        <Phone>+7 495 987-65-43</Phone>
+        <Email>artur@mail.ru</Email>
+        <Address>Москва, ул. Арбат, д. 7, кв. 21</Address>
+      </Contact>
+      <Biometrics>
+        <Photo>artur.jpg</Photo>
+        <FingerprintHash>fp_artur_004</FingerprintHash>
+      </Biometrics>
+    </Person>
+    <Person>
+      <Id>5</Id>
+      <FullName>Абдуллин Тимур Саматович</FullName>
+      <Role>потерпевший</Role>
+      <Contact>
+        <Phone>+7 999 111-22-33</Phone>
+        <Email>timur@mail.ru</Email>
+        <Address>Казань, КФУ</Address>
+      </Contact>
+      <Biometrics>
+        <Photo>timur.jpg</Photo>
+        <FingerprintHash>fp_timur_005</FingerprintHash>
+      </Biometrics>
+    </Person>
+    <Person>
+      <Id>6</Id>
+      <FullName>Шапова Ольга Максимовна</FullName>
+      <Role>свидетель</Role>
+      <Contact>
+        <Phone>+7 999 444-55-66</Phone>
+        <Email>olga@mail.ru</Email>
+        <Address>Казань</Address>
+      </Contact>
+      <Biometrics>
+        <Photo>olga.jpg</Photo>
+        <FingerprintHash>fp_olga_006</FingerprintHash>
+      </Biometrics>
+    </Person>
+    <Person>
+      <Id>7</Id>
+      <FullName>Бандеров Алексей Викторович</FullName>
+      <Role>подозреваемый</Role>
+      <Contact>
+        <Phone>+7 999 777-88-99</Phone>
+        <Email>banderov@kfu.ru</Email>
+        <Address>КФУ, кабинет 1001</Address>
+      </Contact>
+      <Biometrics>
+        <Photo>banderov.jpg</Photo>
+        <FingerprintHash>fp_banderov_007</FingerprintHash>
+      </Biometrics>
+    </Person>
+  </Persons>
+
+  <Cases>
+    <Case>
+      <Id>101</Id>
+      <Title>Убийство в Восточном экспрессе</Title>
+      <Status>
+        <CurrentStatus>в работе</CurrentStatus>
+      </Status>
+      <CrimeDetails>
+        <CrimeType>убийство</CrimeType>
+        <DateOpened>11.02.2026</DateOpened>
+        <CrimeLocation>Поезд "Восточный экспресс", перегон Белград — Загреб, вагон № 7, купе № 7</CrimeLocation>
+        <LeadDetective>Эркюль Пуаро</LeadDetective>
+      </CrimeDetails>
+      <Timeline>
+        <Start>10.02.2026 22:00</Start>
+        <KeyMoments>
+          <Moment time="22:30">Ссора в купе</Moment>
+          <Moment time="23:45">Крик в коридоре</Moment>
+          <Moment time="00:15">Тело найдено</Moment>
+        </KeyMoments>
+      </Timeline>
+    </Case>
+    <Case>
+      <Id>102</Id>
+      <Title>Ножевое ранение студента КФУ</Title>
+      <Status>
+        <CurrentStatus>в расследовании</CurrentStatus>
+      </Status>
+      <CrimeDetails>
+        <CrimeType>покушение</CrimeType>
+        <DateOpened>01.04.2026</DateOpened>
+        <CrimeLocation>Казань, двор КФУ</CrimeLocation>
+        <LeadDetective>Эркюль Пуаро</LeadDetective>
+      </CrimeDetails>
+      <Timeline>
+        <Start>01.04.2026 21:00</Start>
+        <KeyMoments>
+          <Moment time="21:05">Крик о помощи</Moment>
+          <Moment time="21:10">Обнаружен Тимур</Moment>
+          <Moment time="21:20">Прибытие скорой</Moment>
+        </KeyMoments>
+      </Timeline>
+    </Case>
+  </Cases>
+
+  <Hypotheses>
+    <Hypothesis>
+      <Id>1</Id>
+      <CaseId>101</CaseId>
+      <Description>Убийство из мести</Description>
+      <Priority>
+        <Level>основная</Level>
+      </Priority>
+      <Creator>
+        <Name>Эркюль Пуаро</Name>
+        <Role>детектив</Role>
+      </Creator>
+      <Confirmation>
+        <IsConfirmed>false</IsConfirmed>
+        <LastUpdate>15.03.2026</LastUpdate>
+      </Confirmation>
+    </Hypothesis>
+    <Hypothesis>
+      <Id>2</Id>
+      <CaseId>101</CaseId>
+      <Description>Ограбление с перерастанием в убийство</Description>
+      <Priority>
+        <Level>запасная</Level>
+      </Priority>
+      <Creator>
+        <Name>Инспектор Лестрейд</Name>
+        <Role>полицейский</Role>
+      </Creator>
+      <Confirmation>
+        <IsConfirmed>false</IsConfirmed>
+        <LastUpdate>10.03.2026</LastUpdate>
+      </Confirmation>
+    </Hypothesis>
+    <Hypothesis>
+      <Id>3</Id>
+      <CaseId>102</CaseId>
+      <Description>Самоубийство</Description>
+      <Priority>
+        <Level>основная</Level>
+      </Priority>
+      <Creator>
+        <Name>Пуаро</Name>
+        <Role>детектив</Role>
+      </Creator>
+      <Confirmation>
+        <IsConfirmed>false</IsConfirmed>
+        <LastUpdate>02.04.2026</LastUpdate>
+      </Confirmation>
+    </Hypothesis>
+    <Hypothesis>
+      <Id>4</Id>
+      <CaseId>102</CaseId>
+      <Description>Месть со стороны Бандерова</Description>
+      <Priority>
+        <Level>запасная</Level>
+      </Priority>
+      <Creator>
+        <Name>Пуаро</Name>
+        <Role>детектив</Role>
+      </Creator>
+      <Confirmation>
+        <IsConfirmed>false</IsConfirmed>
+        <LastUpdate>02.04.2026</LastUpdate>
+      </Confirmation>
+    </Hypothesis>
+  </Hypotheses>
+
+  <Motives>
+    <Motive>
+      <Id>1</Id>
+      <Person>
+        <PersonId>3</PersonId>
+        <Name>Кокина Вероника</Name>
+      </Person>
+      <MotiveDetails>
+        <Type>месть</Type>
+        <Strength>9</Strength>
+        <Description>Жертва обманула её дочь и разорила семью</Description>
+      </MotiveDetails>
+    </Motive>
+    <Motive>
+      <Id>2</Id>
+      <Person>
+        <PersonId>4</PersonId>
+        <Name>Кабиров Артур</Name>
+      </Person>
+      <MotiveDetails>
+        <Type>наследство</Type>
+        <Strength>7</Strength>
+        <Description>Жертва была его дядей и оставила крупное состояние</Description>
+      </MotiveDetails>
+    </Motive>
+  </Motives>
+
+  <InvestigativeActions>
+    <InvestigativeAction>
+      <Id>1</Id>
+      <CaseId>101</CaseId>
+      <ActionType>
+        <Name>допрос</Name>
+        <Code>DOP-001</Code>
+      </ActionType>
+      <Target>
+        <PersonId>3</PersonId>
+        <PersonName>Кокина Вероника</PersonName>
+      </Target>
+      <Result>
+        <Summary>Призналась в ссоре, отрицает убийство</Summary>
+        <FullText>Я была в её купе, мы ругались, но я не убивала</FullText>
+        <Date>12.02.2026</Date>
+      </Result>
+      <NewEvidences>
+        <EvidenceId>101</EvidenceId>
+        <EvidenceId>102</EvidenceId>
+      </NewEvidences>
+    </InvestigativeAction>
+    <InvestigativeAction>
+      <Id>2</Id>
+      <CaseId>101</CaseId>
+      <ActionType>
+        <Name>обыск</Name>
+        <Code>OB-002</Code>
+      </ActionType>
+      <Target>
+        <PersonId>4</PersonId>
+        <PersonName>Кабиров Артур</PersonName>
+      </Target>
+      <Result>
+        <Summary>Найден нож со следами крови</Summary>
+        <FullText>В багаже обнаружен кухонный нож, предположительно орудие убийства</FullText>
+        <Date>13.02.2026</Date>
+      </Result>
+      <NewEvidences>
+        <EvidenceId>103</EvidenceId>
+      </NewEvidences>
+    </InvestigativeAction>
+    <InvestigativeAction>
+      <Id>3</Id>
+      <CaseId>102</CaseId>
+      <ActionType>
+        <Name>допрос</Name>
+        <Code>DOP-003</Code>
+      </ActionType>
+      <Target>
+        <PersonId>6</PersonId>
+        <PersonName>Шапова Ольга</PersonName>
+      </Target>
+      <Result>
+        <Summary>Видела силуэт</Summary>
+        <FullText>Свидетель видела мужчину, похожего на Бандерова</FullText>
+        <Date>01.04.2026</Date>
+      </Result>
+      <NewEvidences>
+        <EvidenceId>105</EvidenceId>
+      </NewEvidences>
+    </InvestigativeAction>
+    <InvestigativeAction>
+      <Id>4</Id>
+      <CaseId>102</CaseId>
+      <ActionType>
+        <Name>осмотр места преступления</Name>
+        <Code>OSP-001</Code>
+      </ActionType>
+      <Target>
+        <PersonName>КФУ, коридор</PersonName>
+      </Target>
+      <Result>
+        <Summary>Обнаружены следы крови и нож</Summary>
+        <Date>01.04.2026</Date>
+      </Result>
+    </InvestigativeAction>
+    <InvestigativeAction>
+      <Id>5</Id>
+      <CaseId>102</CaseId>
+      <ActionType>
+        <Name>допрос</Name>
+        <Code>DOP-004</Code>
+      </ActionType>
+      <Target>
+        <PersonId>6</PersonId>
+        <PersonName>Шапова Ольга Максимовна</PersonName>
+      </Target>
+      <Result>
+        <Summary>Видела ссору Тимура с Бандеровым</Summary>
+        <Date>02.04.2026</Date>
+      </Result>
+    </InvestigativeAction>
+    <InvestigativeAction>
+      <Id>7</Id>
+      <CaseId>102</CaseId>
+      <ActionType>
+        <Name>проверка подозреваемого</Name>
+        <Code>PROV-001</Code>
+      </ActionType>
+      <Target>
+        <PersonId>7</PersonId>
+        <PersonName>Бандеров Алексей Викторович</PersonName>
+      </Target>
+      <Result>
+        <Summary>Обнаружены мотивы конфликта</Summary>
+        <Date>02.04.2026</Date>
+      </Result>
+    </InvestigativeAction>
+    <InvestigativeAction>
+      <Id>8</Id>
+      <CaseId>102</CaseId>
+      <ActionType>
+        <Name>криминалистическая экспертиза</Name>
+        <Code>EXP-001</Code>
+      </ActionType>
+      <Target>
+        <PersonName>Нож</PersonName>
+      </Target>
+      <Result>
+        <Summary>Отпечатки Бандерова</Summary>
+        <Date>03.04.2026</Date>
+      </Result>
+    </InvestigativeAction>
+  </InvestigativeActions>
+
+  <LocationTimes>
+    <LocationTime>
+      <Id>1</Id>
+      <Person>
+        <PersonId>3</PersonId>
+        <Name>Кокина Вероника</Name>
+      </Person>
+      <Location>
+        <Name>Купе № 7, поезд "Восточный экспресс"</Name>
+        <Type>спальное купе</Type>
+      </Location>
+      <TimeInterval>
+        <Enter>10.02.2026 22:00</Enter>
+        <Exit>11.02.2026 06:00</Exit>
+        <Duration>8 часов</Duration>
+      </TimeInterval>
+      <Source>
+        <Type>показания</Type>
+      </Source>
+    </LocationTime>
+    <LocationTime>
+      <Id>2</Id>
+      <Person>
+        <PersonId>4</PersonId>
+        <Name>Кабиров Артур</Name>
+      </Person>
+      <Location>
+        <Name>Бар вагона-ресторана</Name>
+        <Type>общественное место</Type>
+      </Location>
+      <TimeInterval>
+        <Enter>10.02.2026 21:30</Enter>
+        <Exit>10.02.2026 23:00</Exit>
+        <Duration>1.5 часа</Duration>
+      </TimeInterval>
+      <Source>
+        <Type>чек из магазина</Type>
+      </Source>
+    </LocationTime>
+  </LocationTimes>
+
+  <Meetings>
+    <Meeting>
+      <Id>1</Id>
+      <PersonA>
+        <PersonId>3</PersonId>
+        <Name>Кокина Вероника</Name>
+      </PersonA>
+      <PersonB>
+        <PersonId>2</PersonId>
+        <Name>Сэмюэл Рэтчетт</Name>
+      </PersonB>
+      <MeetingDetails>
+        <Time>10.02.2026 22:30</Time>
+        <Location>Купе № 7</Location>
+        <IsSecret>false</IsSecret>
+      </MeetingDetails>
+      <Witnesses>
+        <Witness>Проводник Пьер Мишель</Witness>
+        <Witness>Кира (ребёнок, купе № 8)</Witness>
+      </Witnesses>
+    </Meeting>
+    <Meeting>
+      <Id>2</Id>
+      <PersonA>
+        <PersonId>4</PersonId>
+        <Name>Кабиров Артур</Name>
+      </PersonA>
+      <PersonB>
+        <PersonId>3</PersonId>
+        <Name>Кокина Вероника</Name>
+      </PersonB>
+      <MeetingDetails>
+        <Time>10.02.2026 23:15</Time>
+        <Location>Коридор вагона № 3</Location>
+        <IsSecret>true</IsSecret>
+      </MeetingDetails>
+      <Witnesses>
+        <Witness>Никто</Witness>
+      </Witnesses>
+    </Meeting>
+    <Meeting>
+      <Id>3</Id>
+      <PersonA>
+        <PersonId>5</PersonId>
+        <Name>Абдуллин Тимур Саматович</Name>
+      </PersonA>
+      <PersonB>
+        <PersonId>7</PersonId>
+        <Name>Бандеров Алексей Викторович</Name>
+      </PersonB>
+      <MeetingDetails>
+        <Time>01.04.2026 20:30</Time>
+        <Location>КФУ, коридор</Location>
+        <IsSecret>true</IsSecret>
+      </MeetingDetails>
+      <Witnesses>
+        <Witness>Шапова Ольга Максимовна</Witness>
+      </Witnesses>
+    </Meeting>
+    <Meeting>
+      <Id>4</Id>
+      <PersonA>
+        <PersonId>5</PersonId>
+        <Name>Абдуллин Тимур Саматович</Name>
+      </PersonA>
+      <PersonB>
+        <PersonId>6</PersonId>
+        <Name>Шапова Ольга Максимовна</Name>
+      </PersonB>
+      <MeetingDetails>
+        <Time>01.04.2026 19:00</Time>
+        <Location>Кафе рядом с КФУ</Location>
+        <IsSecret>false</IsSecret>
+      </MeetingDetails>
+      <Witnesses />
+    </Meeting>
+  </Meetings>
+
+  <Evidences>
+    <Evidence>
+      <Id>101</Id>
+      <CaseId>101</CaseId>
+      <EvidenceType>
+        <Category>физическая</Category>
+        <Subtype>дактилоскопия</Subtype>
+      </EvidenceType>
+      <Description>
+        <Short>Отпечаток пальца на стакане</Short>
+        <Full>Чёткий отпечаток указательного пальца на стакане с виски в купе жертвы</Full>
+      </Description>
+      <FoundInfo>
+        <Location>Купе № 7</Location>
+        <FoundBy>Эркюль Пуаро</FoundBy>
+        <DateFound>11.02.2026</DateFound>
+      </FoundInfo>
+      <ChainOfCustody>
+        <Entry date="11.02.2026" person="Пуаро">Изъят с места преступления</Entry>
+        <Entry date="12.02.2026" person="Лаборант Джонс">Передан на экспертизу</Entry>
+      </ChainOfCustody>
+      <PointsTo>
+        <PersonId>3</PersonId>
+        <PersonName>Кокина Вероника</PersonName>
+        <Confidence>0.95</Confidence>
+      </PointsTo>
+    </Evidence>
+    <Evidence>
+      <Id>102</Id>
+      <CaseId>101</CaseId>
+      <EvidenceType>
+        <Category>цифровая</Category>
+        <Subtype>СМС-сообщения</Subtype>
+      </EvidenceType>
+      <Description>
+        <Short>СМС с угрозами с телефона подозреваемой</Short>
+        <Full>На телефоне жертвы обнаружено СМС от Вероники Кокиной с текстом: "Ты за это заплатишь. Я уничтожу тебя". Отправлено за 2 часа до убийства.</Full>
+      </Description>
+      <FoundInfo>
+        <Location>Телефон жертвы (Сэмюэл Рэтчетт)</Location>
+        <FoundBy>Эксперт-криминалист</FoundBy>
+        <DateFound>11.02.2026</DateFound>
+      </FoundInfo>
+      <ChainOfCustody>
+        <Entry date="11.02.2026" person="Эксперт">Изъят телефон жертвы</Entry>
+        <Entry date="11.02.2026" person="Лаборант Шапова">Выгружены СМС-сообщения</Entry>
+        <Entry date="12.02.2026" person="Пуаро">Приобщено к делу</Entry>
+      </ChainOfCustody>
+      <PointsTo>
+        <PersonId>3</PersonId>
+        <PersonName>Кокина Вероника</PersonName>
+        <Confidence>0.92</Confidence>
+      </PointsTo>
+    </Evidence>
+    <Evidence>
+      <Id>103</Id>
+      <CaseId>101</CaseId>
+      <EvidenceType>
+        <Category>физическая</Category>
+        <Subtype>орудие преступления</Subtype>
+      </EvidenceType>
+      <Description>
+        <Short>Кухонный нож со следами крови</Short>
+        <Full>Нож длиной 18 см, на лезвии следы крови группы A (как у жертвы)</Full>
+      </Description>
+      <FoundInfo>
+        <Location>Багаж Кабирова Артура</Location>
+        <FoundBy>Эркюль Пуаро</FoundBy>
+        <DateFound>13.02.2026</DateFound>
+      </FoundInfo>
+      <ChainOfCustody>
+        <Entry date="13.02.2026" person="Пуаро">Обнаружен при обыске</Entry>
+        <Entry date="14.02.2026" person="Лаборант Джонс">ДНК-экспертиза</Entry>
+      </ChainOfCustody>
+      <PointsTo>
+        <PersonId>4</PersonId>
+        <PersonName>Кабиров Артур</PersonName>
+        <Confidence>0.88</Confidence>
+      </PointsTo>
+    </Evidence>
+    <Evidence>
+      <Id>104</Id>
+      <CaseId>102</CaseId>
+      <EvidenceType>
+        <Category>физическая</Category>
+        <Subtype>карточка</Subtype>
+      </EvidenceType>
+      <Description>
+        <Short>Карточка из бункера</Short>
+        <Full>Запись о страхе интимности и обнаженного тела</Full>
+      </Description>
+      <FoundInfo>
+        <Location>карман Тимура</Location>
+        <FoundBy>Эркюль Пуаро</FoundBy>
+        <DateFound>01.04.2026</DateFound>
+      </FoundInfo>
+      <ChainOfCustody />
+      <PointsTo>
+        <PersonId>5</PersonId>
+        <PersonName>Тимур</PersonName>
+        <Confidence>0.6</Confidence>
+      </PointsTo>
+    </Evidence>
+    <Evidence>
+      <Id>105</Id>
+      <CaseId>102</CaseId>
+      <EvidenceType>
+        <Category>физическая</Category>
+        <Subtype>нож</Subtype>
+      </EvidenceType>
+      <Description>
+        <Short>Нож со следами крови</Short>
+        <Full>Нож найден рядом с местом преступления</Full>
+      </Description>
+      <FoundInfo>
+        <Location>двор КФУ</Location>
+        <FoundBy>полиция</FoundBy>
+        <DateFound>01.04.2026</DateFound>
+      </FoundInfo>
+      <ChainOfCustody />
+      <PointsTo>
+        <PersonId>7</PersonId>
+        <PersonName>Бандеров</PersonName>
+        <Confidence>0.7</Confidence>
+      </PointsTo>
+    </Evidence>
+  </Evidences>
+
+  <Clues>
+    <Clue>
+      <Id>1</Id>
+      <FromEvidence>
+        <EvidenceId>101</EvidenceId>
+        <Description>Отпечаток пальца Вероники</Description>
+      </FromEvidence>
+      <ToEvidence>
+        <EvidenceId>102</EvidenceId>
+        <Description>СМС с угрозами с номера Вероники</Description>
+      </ToEvidence>
+      <InferenceRule>
+        <RuleText>Если отпечаток пальца на стакане совпадает с отпечатком подозреваемой, и СМС отправлено с её номера, то она была в купе в момент убийства</RuleText>
+      </InferenceRule>
+      <Confidence>
+        <Level>высокое</Level>
+      </Confidence>
+    </Clue>
+    <Clue>
+      <Id>2</Id>
+      <FromEvidence>
+        <EvidenceId>103</EvidenceId>
+        <Description>Нож Артура</Description>
+      </FromEvidence>
+      <ToEvidence>
+        <EvidenceId>101</EvidenceId>
+        <Description>Отпечаток Вероники</Description>
+      </ToEvidence>
+      <InferenceRule>
+        <RuleText>Если нож найден у Артура, а отпечатки Вероники — возможно, они действовали вместе</RuleText>
+      </InferenceRule>
+      <Confidence>
+        <Level>среднее</Level>
+      </Confidence>
+    </Clue>
+    <Clue>
+      <Id>3</Id>
+      <FromEvidence>
+        <EvidenceId>105</EvidenceId>
+        <Description>Нож</Description>
+      </FromEvidence>
+      <ToEvidence>
+        <EvidenceId>104</EvidenceId>
+        <Description>Карточка</Description>
+      </ToEvidence>
+      <InferenceRule>
+        <RuleText>Если нож найден и есть психологические проблемы, то может это самоубийство?</RuleText>
+      </InferenceRule>
+      <Confidence>
+        <Level>среднее</Level>
+      </Confidence>
+    </Clue>
+  </Clues>
+</DetectiveData>

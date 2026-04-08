@@ -1,0 +1,693 @@
+{
+  "Persons": [
+    {
+      "Id": 1,
+      "FullName": "Эркюль Пуаро",
+      "Role": "детектив",
+      "Contact": {
+        "Phone": "+7 495 123-45-67",
+        "Email": "poirot@detective.ru",
+        "Address": "Москва, ул. Тверская, д. 12, кв. 45"
+      },
+      "Biometrics": {
+        "Photo": "poirot.jpg",
+        "FingerprintHash": "fp_poirot_001"
+      }
+    },
+    {
+      "Id": 2,
+      "FullName": "Сэмюэл Рэтчетт",
+      "Role": "потерпевший",
+      "Contact": {
+        "Phone": "+7 812 345-67-89",
+        "Email": "ratchett@business.ru",
+        "Address": "Санкт-Петербург, Невский проспект, д. 45, кв. 12"
+      },
+      "Biometrics": {
+        "Photo": "ratchett.jpg",
+        "FingerprintHash": "fp_ratchett_002"
+      }
+    },
+    {
+      "Id": 3,
+      "FullName": "Кокина Вероника",
+      "Role": "подозреваемый",
+      "Contact": {
+        "Phone": "+7 843 256-78-90",
+        "Email": "veronika@mail.ru",
+        "Address": "Казань, ул. Баумана, д. 23, кв. 8"
+      },
+      "Biometrics": {
+        "Photo": "veronika.jpg",
+        "FingerprintHash": "fp_veronika_003"
+      }
+    },
+    {
+      "Id": 4,
+      "FullName": "Кабиров Артур",
+      "Role": "подозреваемый",
+      "Contact": {
+        "Phone": "+7 495 987-65-43",
+        "Email": "artur@mail.ru",
+        "Address": "Москва, ул. Арбат, д. 7, кв. 21"
+      },
+      "Biometrics": {
+        "Photo": "artur.jpg",
+        "FingerprintHash": "fp_artur_004"
+      }
+    },
+    {
+      "Id": 5,
+      "FullName": "Абдуллин Тимур Саматович",
+      "Role": "потерпевший",
+      "Contact": {
+        "Phone": "+7 999 111-22-33",
+        "Email": "timur@mail.ru",
+        "Address": "Казань, КФУ"
+      },
+      "Biometrics": {
+        "Photo": "timur.jpg",
+        "FingerprintHash": "fp_timur_005"
+      }
+    },
+    {
+      "Id": 6,
+      "FullName": "Шапова Ольга Максимовна",
+      "Role": "свидетель",
+      "Contact": {
+        "Phone": "+7 999 444-55-66",
+        "Email": "olga@mail.ru",
+        "Address": "Казань"
+      },
+      "Biometrics": {
+        "Photo": "olga.jpg",
+        "FingerprintHash": "fp_olga_006"
+      }
+    },
+    {
+      "Id": 7,
+      "FullName": "Бандеров Алексей Викторович",
+      "Role": "подозреваемый",
+      "Contact": {
+        "Phone": "+7 999 777-88-99",
+        "Email": "banderov@kfu.ru",
+        "Address": "КФУ, кабинет 1001"
+      },
+      "Biometrics": {
+        "Photo": "banderov.jpg",
+        "FingerprintHash": "fp_banderov_007"
+      }
+    }
+  ],
+  "Cases": [
+    {
+      "Id": 101,
+      "Title": "Убийство в Восточном экспрессе",
+      "Status": {
+        "CurrentStatus": "в работе"
+      },
+      "CrimeDetails": {
+        "CrimeType": "убийство",
+        "DateOpened": "11.02.2026",
+        "CrimeLocation": "Поезд \"Восточный экспресс\", перегон Белград — Загреб, вагон № 7, купе № 7",
+        "LeadDetective": "Эркюль Пуаро"
+      },
+      "Timeline": {
+        "Start": "10.02.2026 22:00",
+        "KeyMoments": [
+          {
+            "time": "22:30",
+            "description": "Ссора в купе"
+          },
+          {
+            "time": "23:45",
+            "description": "Крик в коридоре"
+          },
+          {
+            "time": "00:15",
+            "description": "Тело найдено"
+          }
+        ]
+      }
+    },
+    {
+      "Id": 102,
+      "Title": "Ножевое ранение студента КФУ",
+      "Status": {
+        "CurrentStatus": "в расследовании"
+      },
+      "CrimeDetails": {
+        "CrimeType": "покушение",
+        "DateOpened": "01.04.2026",
+        "CrimeLocation": "Казань, двор КФУ",
+        "LeadDetective": "Эркюль Пуаро"
+      },
+      "Timeline": {
+        "Start": "01.04.2026 21:00",
+        "KeyMoments": [
+          {
+            "time": "21:05",
+            "description": "Крик о помощи"
+          },
+          {
+            "time": "21:10",
+            "description": "Обнаружен Тимур"
+          },
+          {
+            "time": "21:20",
+            "description": "Прибытие скорой"
+          }
+        ]
+      }
+    }
+  ],
+  "Hypotheses": [
+    {
+      "Id": 1,
+      "CaseId": 101,
+      "Description": "Убийство из мести",
+      "Priority": {
+        "Level": "основная"
+      },
+      "Creator": {
+        "Name": "Эркюль Пуаро",
+        "Role": "детектив"
+      },
+      "Confirmation": {
+        "IsConfirmed": false,
+        "LastUpdate": "15.03.2026"
+      }
+    },
+    {
+      "Id": 2,
+      "CaseId": 101,
+      "Description": "Ограбление с перерастанием в убийство",
+      "Priority": {
+        "Level": "запасная"
+      },
+      "Creator": {
+        "Name": "Инспектор Лестрейд",
+        "Role": "полицейский"
+      },
+      "Confirmation": {
+        "IsConfirmed": false,
+        "LastUpdate": "10.03.2026"
+      }
+    },
+    {
+      "Id": 3,
+      "CaseId": 102,
+      "Description": "Самоубийство",
+      "Priority": { "Level": "основная" },
+      "Creator": {
+        "Name": "Пуаро",
+        "Role": "детектив"
+      },
+      "Confirmation": {
+        "IsConfirmed": false,
+        "LastUpdate": "02.04.2026"
+      }
+    },
+    {
+      "Id": 4,
+      "CaseId": 102,
+      "Description": "Месть со стороны Бандерова",
+      "Priority": { "Level": "запасная" },
+      "Creator": {
+        "Name": "Пуаро",
+        "Role": "детектив"
+      },
+      "Confirmation": {
+        "IsConfirmed": false,
+        "LastUpdate": "02.04.2026"
+      }
+    }
+  ],
+  "Motives": [
+    {
+      "Id": 1,
+      "Person": {
+        "PersonId": 3,
+        "Name": "Кокина Вероника"
+      },
+      "MotiveDetails": {
+        "Type": "месть",
+        "Strength": 9,
+        "Description": "Жертва обманула её дочь и разорила семью"
+      }
+    },
+    {
+      "Id": 2,
+      "Person": {
+        "PersonId": 4,
+        "Name": "Кабиров Артур"
+      },
+      "MotiveDetails": {
+        "Type": "наследство",
+        "Strength": 7,
+        "Description": "Жертва была его дядей и оставила крупное состояние"
+      }
+    }
+  ],
+  "InvestigativeActions": [
+    {
+      "Id": 1,
+      "CaseId": 101,
+      "ActionType": {
+        "Name": "допрос",
+        "Code": "DOP-001"
+      },
+      "Target": {
+        "PersonId": 3,
+        "PersonName": "Кокина Вероника"
+      },
+      "Result": {
+        "Summary": "Призналась в ссоре, отрицает убийство",
+        "FullText": "Я была в её купе, мы ругались, но я не убивала",
+        "Date": "12.02.2026"
+      },
+      "NewEvidences": [ 101, 102 ]
+    },
+    {
+      "Id": 2,
+      "CaseId": 101,
+      "ActionType": {
+        "Name": "обыск",
+        "Code": "OB-002"
+      },
+      "Target": {
+        "PersonId": 4,
+        "PersonName": "Кабиров Артур"
+      },
+      "Result": {
+        "Summary": "Найден нож со следами крови",
+        "FullText": "В багаже обнаружен кухонный нож, предположительно орудие убийства",
+        "Date": "13.02.2026"
+      },
+      "NewEvidences": [ 103 ]
+    },
+    {
+      "Id": 3,
+      "CaseId": 102,
+      "ActionType": {
+        "Name": "допрос",
+        "Code": "DOP-003"
+      },
+      "Target": {
+        "PersonId": 6,
+        "PersonName": "Шапова Ольга"
+      },
+      "Result": {
+        "Summary": "Видела силуэт",
+        "FullText": "Свидетель видела мужчину, похожего на Бандерова",
+        "Date": "01.04.2026"
+      },
+      "NewEvidences": [ 105 ]
+    },
+    {
+      "Id": 4,
+      "CaseId": 102,
+      "ActionType": {
+        "Name": "осмотр места преступления",
+        "Code": "OSP-001"
+      },
+      "Target": {
+        "PersonName": "КФУ, коридор"
+      },
+      "Result": {
+        "Summary": "Обнаружены следы крови и нож",
+        "Date": "01.04.2026"
+      }
+    },
+    {
+      "Id": 5,
+      "CaseId": 102,
+      "ActionType": {
+        "Name": "допрос",
+        "Code": "DOP-004"
+      },
+      "Target": {
+        "PersonId": 6,
+        "PersonName": "Шапова Ольга Максимовна"
+      },
+      "Result": {
+        "Summary": "Видела ссору Тимура с Бандеровым",
+        "Date": "02.04.2026"
+      }
+    },
+    {
+      "Id": 7,
+      "CaseId": 102,
+      "ActionType": {
+        "Name": "проверка подозреваемого",
+        "Code": "PROV-001"
+      },
+      "Target": {
+        "PersonId": 7,
+        "PersonName": "Бандеров Алексей Викторович"
+      },
+      "Result": {
+        "Summary": "Обнаружены мотивы конфликта",
+        "Date": "02.04.2026"
+      }
+    },
+    {
+      "Id": 8,
+      "CaseId": 102,
+      "ActionType": {
+        "Name": "криминалистическая экспертиза",
+        "Code": "EXP-001"
+      },
+      "Target": {
+        "PersonName": "Нож"
+      },
+      "Result": {
+        "Summary": "Отпечатки Бандерова",
+        "Date": "03.04.2026"
+      }
+    }
+  ],
+  "LocationTimes": [
+    {
+      "Id": 1,
+      "Person": {
+        "PersonId": 3,
+        "Name": "Кокина Вероника"
+      },
+      "Location": {
+        "Name": "Купе № 7, поезд \"Восточный экспресс\"",
+        "Type": "спальное купе"
+      },
+      "TimeInterval": {
+        "Enter": "10.02.2026 22:00",
+        "Exit": "11.02.2026 06:00",
+        "Duration": "8 часов"
+      },
+      "Source": {
+        "Type": "показания"
+      }
+    },
+    {
+      "Id": 2,
+      "Person": {
+        "PersonId": 4,
+        "Name": "Кабиров Артур"
+      },
+      "Location": {
+        "Name": "Бар вагона-ресторана",
+        "Type": "общественное место"
+      },
+      "TimeInterval": {
+        "Enter": "10.02.2026 21:30",
+        "Exit": "10.02.2026 23:00",
+        "Duration": "1.5 часа"
+      },
+      "Source": {
+        "Type": "чек из магазина"
+      }
+    }
+  ],
+  "Meetings": [
+    {
+      "Id": 1,
+      "PersonA": {
+        "PersonId": 3,
+        "Name": "Кокина Вероника"
+      },
+      "PersonB": {
+        "PersonId": 2,
+        "Name": "Сэмюэл Рэтчетт"
+      },
+      "MeetingDetails": {
+        "Time": "10.02.2026 22:30",
+        "Location": "Купе № 7",
+        "IsSecret": false
+      },
+      "Witnesses": [
+        "Проводник Пьер Мишель",
+        "Кира (ребёнок, купе № 8)"
+      ]
+    },
+    {
+      "Id": 2,
+      "PersonA": {
+        "PersonId": 4,
+        "Name": "Кабиров Артур"
+      },
+      "PersonB": {
+        "PersonId": 3,
+        "Name": "Кокина Вероника"
+      },
+      "MeetingDetails": {
+        "Time": "10.02.2026 23:15",
+        "Location": "Коридор вагона № 3",
+        "IsSecret": true
+      },
+      "Witnesses": [
+        "Никто"
+      ]
+    },
+    {
+      "Id": 3,
+      "PersonA": {
+        "PersonId": 5,
+        "Name": "Абдуллин Тимур Саматович"
+      },
+      "PersonB": {
+        "PersonId": 7,
+        "Name": "Бандеров Алексей Викторович"
+      },
+      "MeetingDetails": {
+        "Time": "01.04.2026 20:30",
+        "Location": "КФУ, коридор",
+        "IsSecret": true
+      },
+      "Witnesses": [ "Шапова Ольга Максимовна" ]
+    },
+    {
+      "Id": 4,
+      "PersonA": {
+        "PersonId": 5,
+        "Name": "Абдуллин Тимур Саматович"
+      },
+      "PersonB": {
+        "PersonId": 6,
+        "Name": "Шапова Ольга Максимовна"
+      },
+      "MeetingDetails": {
+        "Time": "01.04.2026 19:00",
+        "Location": "Кафе рядом с КФУ",
+        "IsSecret": false
+      },
+      "Witnesses": []
+    }
+  ],
+  "Evidences": [
+    {
+      "Id": 101,
+      "CaseId": 101,
+      "EvidenceType": {
+        "Category": "физическая",
+        "Subtype": "дактилоскопия"
+      },
+      "Description": {
+        "Short": "Отпечаток пальца на стакане",
+        "Full": "Чёткий отпечаток указательного пальца на стакане с виски в купе жертвы"
+      },
+      "FoundInfo": {
+        "Location": "Купе № 7",
+        "FoundBy": "Эркюль Пуаро",
+        "DateFound": "11.02.2026"
+      },
+      "ChainOfCustody": [
+        {
+          "date": "11.02.2026",
+          "person": "Пуаро",
+          "action": "Изъят с места преступления"
+        },
+        {
+          "date": "12.02.2026",
+          "person": "Лаборант Джонс",
+          "action": "Передан на экспертизу"
+        }
+      ],
+      "PointsTo": {
+        "PersonId": 3,
+        "PersonName": "Кокина Вероника",
+        "Confidence": 0.95
+      }
+    },
+    {
+      "Id": 102,
+      "CaseId": 101,
+      "EvidenceType": {
+        "Category": "цифровая",
+        "Subtype": "СМС-сообщения"
+      },
+      "Description": {
+        "Short": "СМС с угрозами с телефона подозреваемой",
+        "Full": "На телефоне жертвы обнаружено СМС от Вероники Кокиной с текстом: \"Ты за это заплатишь. Я уничтожу тебя\". Отправлено за 2 часа до убийства."
+      },
+      "FoundInfo": {
+        "Location": "Телефон жертвы (Сэмюэл Рэтчетт)",
+        "FoundBy": "Эксперт-криминалист",
+        "DateFound": "11.02.2026"
+      },
+      "ChainOfCustody": [
+        {
+          "date": "11.02.2026",
+          "person": "Эксперт",
+          "action": "Изъят телефон жертвы"
+        },
+        {
+          "date": "11.02.2026",
+          "person": "Лаборант Шапова",
+          "action": "Выгружены СМС-сообщения"
+        },
+        {
+          "date": "12.02.2026",
+          "person": "Пуаро",
+          "action": "Приобщено к делу"
+        }
+      ],
+      "PointsTo": {
+        "PersonId": 3,
+        "PersonName": "Кокина Вероника",
+        "Confidence": 0.92
+      }
+    },
+    {
+      "Id": 103,
+      "CaseId": 101,
+      "EvidenceType": {
+        "Category": "физическая",
+        "Subtype": "орудие преступления"
+      },
+      "Description": {
+        "Short": "Кухонный нож со следами крови",
+        "Full": "Нож длиной 18 см, на лезвии следы крови группы A (как у жертвы)"
+      },
+      "FoundInfo": {
+        "Location": "Багаж Кабирова Артура",
+        "FoundBy": "Эркюль Пуаро",
+        "DateFound": "13.02.2026"
+      },
+      "ChainOfCustody": [
+        {
+          "date": "13.02.2026",
+          "person": "Пуаро",
+          "action": "Обнаружен при обыске"
+        },
+        {
+          "date": "14.02.2026",
+          "person": "Лаборант Джонс",
+          "action": "ДНК-экспертиза"
+        }
+      ],
+      "PointsTo": {
+        "PersonId": 4,
+        "PersonName": "Кабиров Артур",
+        "Confidence": 0.88
+      }
+    },
+    {
+      "Id": 104,
+      "CaseId": 102,
+      "EvidenceType": {
+        "Category": "физическая",
+        "Subtype": "карточка"
+      },
+      "Description": {
+        "Short": "Карточка из бункера",
+        "Full": "Запись о страхе интимности и обнаженного тела"
+      },
+      "FoundInfo": {
+        "Location": "карман Тимура",
+        "FoundBy": "Эркюль Пуаро",
+        "DateFound": "01.04.2026"
+      },
+      "ChainOfCustody": [],
+      "PointsTo": {
+        "PersonId": 5,
+        "PersonName": "Тимур",
+        "Confidence": 0.6
+      }
+    },
+    {
+      "Id": 105,
+      "CaseId": 102,
+      "EvidenceType": {
+        "Category": "физическая",
+        "Subtype": "нож"
+      },
+      "Description": {
+        "Short": "Нож со следами крови",
+        "Full": "Нож найден рядом с местом преступления"
+      },
+      "FoundInfo": {
+        "Location": "двор КФУ",
+        "FoundBy": "полиция",
+        "DateFound": "01.04.2026"
+      },
+      "ChainOfCustody": [],
+      "PointsTo": {
+        "PersonId": 7,
+        "PersonName": "Бандеров",
+        "Confidence": 0.7
+      }
+    }
+  ],
+  "Clues": [
+    {
+      "Id": 1,
+      "FromEvidence": {
+        "EvidenceId": 101,
+        "Description": "Отпечаток пальца Вероники"
+      },
+      "ToEvidence": {
+        "EvidenceId": 102,
+        "Description": "СМС с угрозами с номера Вероники"
+      },
+      "InferenceRule": {
+        "RuleText": "Если отпечаток пальца на стакане совпадает с отпечатком подозреваемой, и СМС отправлено с её номера, то она была в купе в момент убийства"
+      },
+      "Confidence": {
+        "Level": "высокое"
+      }
+    },
+    {
+      "Id": 2,
+      "FromEvidence": {
+        "EvidenceId": 103,
+        "Description": "Нож Артура"
+      },
+      "ToEvidence": {
+        "EvidenceId": 101,
+        "Description": "Отпечаток Вероники"
+      },
+      "InferenceRule": {
+        "RuleText": "Если нож найден у Артура, а отпечатки Вероники — возможно, они действовали вместе"
+      },
+      "Confidence": {
+        "Level": "среднее"
+      }
+    },
+    {
+      "Id": 3,
+      "FromEvidence": {
+        "EvidenceId": 105,
+        "Description": "Нож"
+      },
+      "ToEvidence": {
+        "EvidenceId": 104,
+        "Description": "Карточка"
+      },
+      "InferenceRule": {
+        "RuleText": "Если нож найден и есть психологические проблемы, то может это самоубийство?"
+      },
+      "Confidence": {
+        "Level": "среднее"
+      }
+    }
+  ]
+}
