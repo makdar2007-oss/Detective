@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Detective.Models
 {
@@ -13,7 +14,7 @@ namespace Detective.Models
         public string Category { get; set; }
 
         /// <summary>
-        /// Подтип улики (дактилоскопия, СМС, орудие и т.д.)
+        /// Подтип улики
         /// </summary>
         public string Subtype { get; set; }
     }
@@ -84,7 +85,7 @@ namespace Detective.Models
         /// <summary>
         /// Идентификатор подозреваемого
         /// </summary>
-        public int PersonId { get; set; }
+        public Guid PersonId { get; set; }
 
         /// <summary>
         /// Имя подозреваемого
@@ -105,12 +106,15 @@ namespace Detective.Models
         /// <summary>
         /// Уникальный идентификатор улики
         /// </summary>
-        public int Id { get; set; }
-
+        public Guid Id { get; set; } = Guid.NewGuid();
+        /// <summary>
+        /// Уникальный идентификатор улики короткий
+        /// </summary>
+        public int NumberId { get; set; }
         /// <summary>
         /// Идентификатор дела, к которому относится улика
         /// </summary>
-        public int CaseId { get; set; }
+        public Guid CaseId { get; set; }
 
         /// <summary>
         /// Тип улики

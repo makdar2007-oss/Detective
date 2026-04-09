@@ -1,4 +1,6 @@
-﻿namespace Detective.Models
+﻿using System;
+
+namespace Detective.Models
 {
     /// <summary>
     /// Ссылка на человека
@@ -8,7 +10,7 @@
         /// <summary>
         /// Идентификатор человека
         /// </summary>
-        public int PersonId { get; set; }
+        public Guid PersonId { get; set; }
 
         /// <summary>
         /// Имя человека
@@ -72,7 +74,7 @@
         /// <summary>
         /// Уникальный идентификатор записи
         /// </summary>
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         /// <summary>
         /// Человек

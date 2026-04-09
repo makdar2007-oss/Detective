@@ -1,4 +1,6 @@
-﻿namespace Detective.DTO
+﻿using System;
+
+namespace Detective.DTO
 {
     /// <summary>
     /// DTO для передачи данных о деле
@@ -6,9 +8,14 @@
     public class CaseDto
     {
         /// <summary>
-        /// Уникальный идентификатор дела
+        /// Уникальный идентификатор дела 
         /// </summary>
-        public int Id { get; set; }
+        public Guid Id { get; set; }
+
+        /// <summary>
+        /// Числовой идентификатор для отображения
+        /// </summary>
+        public int NumberId { get; set; }
 
         /// <summary>
         /// Название дела

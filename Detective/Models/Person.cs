@@ -1,4 +1,6 @@
-﻿namespace Detective.Models
+﻿using System;
+
+namespace Detective.Models
 {
     /// <summary>
     /// Контактная информация человека
@@ -45,12 +47,20 @@
         /// <summary>
         /// Уникальный идентификатор человека
         /// </summary>
-        public int Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
+        /// <summary>
+        /// Имя человека
+        /// </summary>
+        public string FirstName { get; set; }
+        /// <summary>
+        /// Фамилия человека
+        /// </summary>
+        public string LastName { get; set; }
 
         /// <summary>
         /// Полное имя человека
         /// </summary>
-        public string FullName { get; set; }
+        public string FullName => $"{FirstName} {LastName}".Trim();
 
         /// <summary>
         /// Роль в расследовании

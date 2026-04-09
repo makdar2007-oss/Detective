@@ -1,4 +1,6 @@
-﻿namespace Detective.DTO
+﻿using System;
+
+namespace Detective.DTO
 {
     /// <summary>
     /// DTO для передачи данных о мотиве
@@ -8,7 +10,7 @@
         /// <summary>
         /// Уникальный идентификатор мотива
         /// </summary>
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         /// <summary>
         /// Имя подозреваемого
@@ -16,7 +18,7 @@
         public string PersonName { get; set; }
 
         /// <summary>
-        /// Тип мотива (месть, наследство и т.д.)
+        /// Тип мотива 
         /// </summary>
         public string Type { get; set; }
 

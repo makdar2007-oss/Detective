@@ -1,19 +1,20 @@
 ﻿using Detective.DTO;
-using System.Drawing;
 using Detective.Forms;
 using Detective.Models;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 
 namespace Detective
-{ 
-  /// <summary>
-  /// Главная форма приложения "Детективное агентство"
-  /// </summary>
+{
+    /// <summary>
+    /// Главная форма приложения "Детективное агентство"
+    /// </summary>
     public partial class DetectiveApp : Form
     {
         private DetectiveData currentData;
@@ -21,11 +22,22 @@ namespace Detective
         public DetectiveApp()
         {
             InitializeComponent();
+
             treeViewdetective.AfterSelect += TreeViewdetective_AfterSelect;
 
             dataGridViewDetective.Font = new Font("Segoe UI", 11);
             dataGridViewDetective.ColumnHeadersDefaultCellStyle.Font =
-                new Font("Segoe UI", 14, FontStyle.Bold);
+                new Font("Segoe UI", 12, FontStyle.Bold);
+
+            dataGridViewDetective.AutoGenerateColumns = true;
+            dataGridViewDetective.ReadOnly = true;
+            dataGridViewDetective.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewDetective.MultiSelect = false;
+            dataGridViewDetective.AllowUserToAddRows = false;
+            dataGridViewDetective.AllowUserToDeleteRows = false;
+            dataGridViewDetective.AllowUserToResizeRows = false;
+            dataGridViewDetective.RowHeadersVisible = false;
+            dataGridViewDetective.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         private void TreeViewdetective_AfterSelect(object sender, TreeViewEventArgs e)
@@ -36,7 +48,8 @@ namespace Detective
 
         private void LoadDataToGrid(string entityType)
         {
-            if (currentData == null) return;
+            if (currentData == null)
+                return;
 
             dataGridViewDetective.SuspendLayout();
 
@@ -51,7 +64,8 @@ namespace Detective
                             .Select(x => new PersonDto
                             {
                                 Id = x.Id,
-                                FullName = x.FullName,
+                                FirstName = x.FirstName,
+                                LastName = x.LastName,
                                 Role = x.Role,
                                 Phone = x.Contact?.Phone,
                                 Email = x.Contact?.Email,
@@ -66,6 +80,7 @@ namespace Detective
                             .Select(x => new CaseDto
                             {
                                 Id = x.Id,
+                                NumberId = x.NumberId,
                                 Title = x.Title,
                                 Status = x.Status?.CurrentStatus,
                                 CrimeType = x.CrimeDetails?.CrimeType,
@@ -169,59 +184,67 @@ namespace Detective
                         break;
                 }
 
-                dataGridViewDetective.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 LocalizeColumns(entityType);
                 ApplyRowColors(entityType);
+                HideTechnicalColumns();
             }
             finally
             {
                 dataGridViewDetective.ResumeLayout();
             }
         }
-        /// <summary>
-        /// Загружает данные из XML-файла
-        /// </summary>
         private void btnLoadXML_Click(object sender, EventArgs e)
         {
             openFileDialog.Filter = "XML files (*.xml)|*.xml";
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+
+            if (openFileDialog.ShowDialog() != DialogResult.OK)
+                return;
+
+            try
             {
-                try
+                var serializer = new XmlSerializer(typeof(DetectiveData));
+                using (var fs = new FileStream(openFileDialog.FileName, FileMode.Open))
                 {
-                    XmlSerializer serializer = new XmlSerializer(typeof(DetectiveData));
-                    using (FileStream fs = new FileStream(openFileDialog.FileName, FileMode.Open))
-                        currentData = (DetectiveData)serializer.Deserialize(fs);
-                    MessageBox.Show("XML загружен!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    currentData = (DetectiveData)serializer.Deserialize(fs);
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Ошибка: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+
+                ValidateLoadedData();
+                MessageBox.Show("XML загружен!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка загрузки XML:\n" + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        /// <summary>
-        /// Загружает данные из JSON-файла
-        /// </summary>
+
         private void btnLoadJSON_Click(object sender, EventArgs e)
         {
             openFileDialog.Filter = "JSON files (*.json)|*.json";
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+
+            if (openFileDialog.ShowDialog() != DialogResult.OK)
+                return;
+
+            try
             {
-                try
-                {
-                    var json = File.ReadAllText(openFileDialog.FileName);
-                    currentData = JsonConvert.DeserializeObject<DetectiveData>(json);
-                    MessageBox.Show("JSON загружен!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Ошибка: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                var json = File.ReadAllText(openFileDialog.FileName);
+
+                currentData = JsonConvert.DeserializeObject<DetectiveData>(
+                    json,
+                    new JsonSerializerSettings
+                    {
+                        MissingMemberHandling = MissingMemberHandling.Ignore,
+                        NullValueHandling = NullValueHandling.Include
+                    });
+
+                ValidateLoadedData();
+                MessageBox.Show("JSON загружен!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка загрузки JSON:\n" + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        /// <summary>
-        /// Показывает форму с детальной информацией о выбранной записи
-        /// </summary>
+
         private void btnShowDetails_Click(object sender, EventArgs e)
         {
             if (currentData == null)
@@ -236,174 +259,192 @@ namespace Detective
                 return;
             }
 
-            dynamic selectedItem = dataGridViewDetective.CurrentRow.DataBoundItem;
-            var id = selectedItem.Id;
-
             if (treeViewdetective.SelectedNode == null)
             {
                 MessageBox.Show("Выберите сущность в дереве!");
                 return;
             }
 
+            if (dataGridViewDetective.CurrentRow.DataBoundItem == null)
+            {
+                MessageBox.Show("Не удалось получить выбранную запись!");
+                return;
+            }
+
+            var boundItem = dataGridViewDetective.CurrentRow.DataBoundItem;
+            var idProperty = boundItem.GetType().GetProperty("Id");
+
+            if (idProperty == null || idProperty.PropertyType != typeof(Guid))
+            {
+                MessageBox.Show("У выбранной записи не найден id!");
+                return;
+            }
+
+            var id = (Guid)idProperty.GetValue(boundItem);
             var currentEntityType = treeViewdetective.SelectedNode.Name;
-            Forms.Details detailsForm = new Forms.Details(currentData, currentEntityType, id);
-            detailsForm.ShowDialog();
+
+            using (var detailsForm = new Details(currentData, currentEntityType, id))
+            {
+                detailsForm.ShowDialog();
+            }
         }
-        /// <summary>
-        /// Заголовки столбцов на русском
-        /// </summary>
+
+        private void ValidateLoadedData()
+        {
+            if (currentData == null)
+                throw new Exception("Файл не удалось десериализовать.");
+
+            if (currentData.Persons == null)
+                currentData.Persons = new List<Person>();
+
+            if (currentData.Cases == null)
+                currentData.Cases = new List<Case>();
+
+            if (currentData.Hypotheses == null)
+                currentData.Hypotheses = new List<Hypothesis>();
+
+            if (currentData.Motives == null)
+                currentData.Motives = new List<Motive>();
+
+            if (currentData.InvestigativeActions == null)
+                currentData.InvestigativeActions = new List<InvestigativeAction>();
+
+            if (currentData.LocationTimes == null)
+                currentData.LocationTimes = new List<LocationTime>();
+
+            if (currentData.Meetings == null)
+                currentData.Meetings = new List<Meeting>();
+
+            if (currentData.Evidences == null)
+                currentData.Evidences = new List<Evidence>();
+
+            if (currentData.Clues == null)
+                currentData.Clues = new List<Clue>();
+        }
+
+        private void HideTechnicalColumns()
+        {
+            if (dataGridViewDetective.Columns.Contains("Id"))
+                dataGridViewDetective.Columns["Id"].Visible = false;
+
+            if (dataGridViewDetective.Columns.Contains("Photo"))
+                dataGridViewDetective.Columns["Photo"].Visible = false;
+        }
+
         private void LocalizeColumns(string entityType)
         {
             var grid = dataGridViewDetective;
-
-            if (grid.Columns.Count == 0) return;
-
-            if (entityType == "Persons")
-            {
-                grid.Columns["Id"].HeaderText = "ID";
-                grid.Columns["FullName"].HeaderText = "ФИО";
-                grid.Columns["Role"].HeaderText = "Роль";
-                grid.Columns["Phone"].HeaderText = "Телефон";
-                grid.Columns["Email"].HeaderText = "Почта";
-                grid.Columns["Address"].HeaderText = "Адрес";
-                grid.Columns["Photo"].HeaderText = "Фото";
-
-                grid.Columns["Id"].Visible = false; 
-            }
-
-            else if (entityType == "Cases")
-            {
-                grid.Columns["Id"].HeaderText = "ID";
-                grid.Columns["Title"].HeaderText = "Название";
-                grid.Columns["Status"].HeaderText = "Статус";
-                grid.Columns["CrimeType"].HeaderText = "Тип преступления";
-                grid.Columns["Location"].HeaderText = "Место";
-                grid.Columns["Detective"].HeaderText = "Детектив";
-
-                grid.Columns["Id"].Visible = false;
-            }
-
-            else if (entityType == "Hypotheses")
-            {
-                grid.Columns["Id"].HeaderText = "ID";
-                grid.Columns["Description"].HeaderText = "Описание";
-                grid.Columns["Priority"].HeaderText = "Приоритет";
-                grid.Columns["CreatorName"].HeaderText = "Создатель";
-                grid.Columns["IsConfirmed"].HeaderText = "Подтверждена";
-
-                grid.Columns["Id"].Visible = false;
-            }
-
-            else if (entityType == "Motives")
-            {
-                grid.Columns["Id"].HeaderText = "ID";
-                grid.Columns["PersonName"].HeaderText = "Человек";
-                grid.Columns["Type"].HeaderText = "Тип";
-                grid.Columns["Strength"].HeaderText = "Сила";
-                grid.Columns["Description"].HeaderText = "Описание";
-
-                grid.Columns["Id"].Visible = false;
-            }
-
-            else if (entityType == "InvestigativeActions")
-            {
-                grid.Columns["Id"].HeaderText = "ID";
-                grid.Columns["ActionType"].HeaderText = "Действие";
-                grid.Columns["Target"].HeaderText = "Цель";
-                grid.Columns["Result"].HeaderText = "Результат";
-                grid.Columns["Date"].HeaderText = "Дата";
-
-                grid.Columns["Id"].Visible = false;
-            }
-
-            else if (entityType == "LocationTimes")
-            {
-                grid.Columns["Id"].HeaderText = "ID";
-                grid.Columns["Person"].HeaderText = "Человек";
-                grid.Columns["Location"].HeaderText = "Место";
-                grid.Columns["Enter"].HeaderText = "Вход";
-                grid.Columns["Exit"].HeaderText = "Выход";
-
-                grid.Columns["Id"].Visible = false;
-            }
-
-            else if (entityType == "Meetings")
-            {
-                grid.Columns["Id"].HeaderText = "ID";
-                grid.Columns["PersonA"].HeaderText = "Участник A";
-                grid.Columns["PersonB"].HeaderText = "Участник B";
-                grid.Columns["Location"].HeaderText = "Место";
-                grid.Columns["Time"].HeaderText = "Время";
-                grid.Columns["IsSecret"].HeaderText = "Тайная";
-
-                grid.Columns["Id"].Visible = false;
-            }
-
-            else if (entityType == "Evidences")
-            {
-                grid.Columns["Id"].HeaderText = "ID";
-                grid.Columns["Category"].HeaderText = "Категория";
-                grid.Columns["Description"].HeaderText = "Описание";
-                grid.Columns["FoundAt"].HeaderText = "Где найдено";
-                grid.Columns["FoundBy"].HeaderText = "Кем найдено";
-                grid.Columns["Suspect"].HeaderText = "Подозреваемый";
-
-                grid.Columns["Id"].Visible = false;
-            }
-
-            else if (entityType == "Clues")
-            {
-                grid.Columns["Id"].HeaderText = "ID";
-                grid.Columns["From"].HeaderText = "От";
-                grid.Columns["To"].HeaderText = "К";
-                grid.Columns["Rule"].HeaderText = "Правило";
-                grid.Columns["Confidence"].HeaderText = "Уверенность";
-
-                grid.Columns["Id"].Visible = false;
-            }
-        }
-        /// <summary>
-        /// Применяет цветовую подсветку строк в зависимости от роли человека
-        /// </summary>
-        private void ApplyRowColors(string entityType)
-        {
-            if (entityType != "Persons")
+            if (grid.Columns.Count == 0)
                 return;
 
+            switch (entityType)
+            {
+                case "Persons":
+                    SetHeader("FullName", "ФИО");
+                    SetHeader("Role", "Роль");
+                    SetHeader("Phone", "Телефон");
+                    SetHeader("Email", "Почта");
+                    SetHeader("Address", "Адрес");
+
+                    if (dataGridViewDetective.Columns.Contains("FirstName"))
+                        dataGridViewDetective.Columns["FirstName"].Visible = false;
+
+                    if (dataGridViewDetective.Columns.Contains("LastName"))
+                        dataGridViewDetective.Columns["LastName"].Visible = false;
+                    break;
+
+                case "Cases":
+                    SetHeader("NumberId", "Номер");
+                    SetHeader("Title", "Название");
+                    SetHeader("Status", "Статус");
+                    SetHeader("CrimeType", "Тип преступления");
+                    SetHeader("Location", "Место");
+                    SetHeader("Detective", "Детектив");
+                    break;
+
+                case "Hypotheses":
+                    SetHeader("Description", "Описание");
+                    SetHeader("Priority", "Приоритет");
+                    SetHeader("CreatorName", "Автор");
+                    SetHeader("IsConfirmed", "Подтверждена");
+                    break;
+
+                case "Motives":
+                    SetHeader("PersonName", "Подозреваемый");
+                    SetHeader("Type", "Тип");
+                    SetHeader("Strength", "Сила");
+                    SetHeader("Description", "Описание");
+                    break;
+
+                case "InvestigativeActions":
+                    SetHeader("ActionType", "Действие");
+                    SetHeader("Target", "Цель");
+                    SetHeader("Result", "Результат");
+                    SetHeader("Date", "Дата");
+                    break;
+
+                case "LocationTimes":
+                    SetHeader("Person", "Человек");
+                    SetHeader("Location", "Локация");
+                    SetHeader("Enter", "Вход");
+                    SetHeader("Exit", "Выход");
+                    break;
+
+                case "Meetings":
+                    SetHeader("PersonA", "Участник 1");
+                    SetHeader("PersonB", "Участник 2");
+                    SetHeader("Location", "Место");
+                    SetHeader("Time", "Время");
+                    SetHeader("IsSecret", "Тайная");
+                    break;
+
+                case "Evidences":
+                    SetHeader("Category", "Категория");
+                    SetHeader("Description", "Описание");
+                    SetHeader("FoundAt", "Где найдено");
+                    SetHeader("FoundBy", "Кто нашёл");
+                    SetHeader("Suspect", "Указывает на");
+                    break;
+
+                case "Clues":
+                    SetHeader("From", "Из улики");
+                    SetHeader("To", "К улике");
+                    SetHeader("Rule", "Правило");
+                    SetHeader("Confidence", "Уверенность");
+                    break;
+            }
+        }
+
+        private void SetHeader(string columnName, string headerText)
+        {
+            if (dataGridViewDetective.Columns.Contains(columnName))
+                dataGridViewDetective.Columns[columnName].HeaderText = headerText;
+        }
+
+        private void ApplyRowColors(string entityType)
+        {
             foreach (DataGridViewRow row in dataGridViewDetective.Rows)
             {
-                if (row.DataBoundItem is PersonDto person)
+                row.DefaultCellStyle.BackColor = Color.White;
+
+                if (entityType == "Persons" &&
+                    row.Cells["Role"]?.Value?.ToString()?.ToLower() == "подозреваемый")
                 {
-                    row.DefaultCellStyle.BackColor = Color.White;
-                    row.DefaultCellStyle.ForeColor = Color.Black;
-                    row.DefaultCellStyle.SelectionForeColor = Color.Black;
+                    row.DefaultCellStyle.BackColor = Color.MistyRose;
+                }
 
-                    switch (person.Role?.ToLower())
-                    {
-                        case "подозреваемый":
-                            row.DefaultCellStyle.BackColor = Color.LightCoral;
-                            row.DefaultCellStyle.SelectionBackColor = Color.IndianRed;
-                            break;
+                if (entityType == "Meetings" &&
+                    row.Cells["IsSecret"]?.Value is bool isSecret &&
+                    isSecret)
+                {
+                    row.DefaultCellStyle.BackColor = Color.LemonChiffon;
+                }
 
-                        case "детектив":
-                            row.DefaultCellStyle.BackColor = Color.LightGreen;
-                            row.DefaultCellStyle.SelectionBackColor = Color.PaleGreen;
-                            break;
-
-                        case "потерпевший":
-                            row.DefaultCellStyle.BackColor = Color.Gainsboro;
-                            row.DefaultCellStyle.SelectionBackColor = Color.Silver;
-                            break;
-
-                        case "свидетель":
-                            row.DefaultCellStyle.BackColor = Color.LightBlue;
-                            row.DefaultCellStyle.SelectionBackColor = Color.SkyBlue;
-                            break;
-
-                        default:
-                            row.DefaultCellStyle.SelectionBackColor = Color.LightSteelBlue;
-                            break;
-                    }
+                if (entityType == "Hypotheses" &&
+                    row.Cells["IsConfirmed"]?.Value is bool confirmed &&
+                    confirmed)
+                {
+                    row.DefaultCellStyle.BackColor = Color.Honeydew;
                 }
             }
         }

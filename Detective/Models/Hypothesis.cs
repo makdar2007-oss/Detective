@@ -1,4 +1,6 @@
-﻿namespace Detective.Models
+﻿using System;
+
+namespace Detective.Models
 {
     /// <summary>
     /// Приоритет версии
@@ -51,12 +53,12 @@
         /// <summary>
         /// Уникальный идентификатор версии
         /// </summary>
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         /// <summary>
         /// Идентификатор дела
         /// </summary>
-        public int CaseId { get; set; }
+        public Guid CaseId { get; set; }
 
         /// <summary>
         /// Описание версии

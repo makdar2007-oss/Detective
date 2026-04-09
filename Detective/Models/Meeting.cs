@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Detective.Models
 {
@@ -10,7 +11,7 @@ namespace Detective.Models
         /// <summary>
         /// Идентификатор участника
         /// </summary>
-        public int PersonId { get; set; }
+        public Guid PersonId { get; set; }
 
         /// <summary>
         /// Имя участника
@@ -47,7 +48,7 @@ namespace Detective.Models
         /// <summary>
         /// Уникальный идентификатор встречи
         /// </summary>
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         /// <summary>
         /// Первый участник встречи

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Detective.Models
 {
@@ -77,9 +78,14 @@ namespace Detective.Models
     public class Case
     {
         /// <summary>
-        /// Уникальный идентификатор дела
+        /// Уникальный идентификатор дела (GUID)
         /// </summary>
-        public int Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
+
+        /// <summary>
+        /// Числовой идентификатор для отображения пользователю
+        /// </summary>
+        public int NumberId { get; set; }
 
         /// <summary>
         /// Название дела

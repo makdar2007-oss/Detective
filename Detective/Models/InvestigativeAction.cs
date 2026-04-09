@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Detective.Models
 {
@@ -24,9 +25,9 @@ namespace Detective.Models
     public class Target
     {
         /// <summary>
-        /// Идентификатор человека - цели
+        /// Идентификатор человека (как в JSON — число, а не GUID)
         /// </summary>
-        public int PersonId { get; set; }
+        public int? PersonId { get; set; }
 
         /// <summary>
         /// Имя человека - цели
@@ -63,12 +64,12 @@ namespace Detective.Models
         /// <summary>
         /// Уникальный идентификатор действия
         /// </summary>
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         /// <summary>
         /// Идентификатор дела
         /// </summary>
-        public int CaseId { get; set; }
+        public Guid CaseId { get; set; }
 
         /// <summary>
         /// Тип следственного действия
@@ -86,7 +87,7 @@ namespace Detective.Models
         public ActionResult Result { get; set; }
 
         /// <summary>
-        /// Список идентификаторов новых улик, обнаруженных в ходе действия
+        /// Список идентификаторов новых улик
         /// </summary>
         public List<int> NewEvidences { get; set; }
     }

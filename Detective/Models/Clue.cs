@@ -1,4 +1,6 @@
-﻿namespace Detective.Models
+﻿using System;
+
+namespace Detective.Models
 {
     /// <summary>
     /// Ссылка на улику
@@ -46,7 +48,7 @@
         /// <summary>
         /// Уникальный идентификатор цепочки
         /// </summary>
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         /// <summary>
         /// Исходная улика

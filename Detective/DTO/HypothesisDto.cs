@@ -1,4 +1,6 @@
-﻿namespace Detective.DTO
+﻿using System;
+
+namespace Detective.DTO
 {
     /// <summary>
     /// DTO для передачи данных о версии
@@ -8,7 +10,7 @@
         /// <summary>
         /// Уникальный идентификатор версии
         /// </summary>
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         /// <summary>
         /// Описание версии

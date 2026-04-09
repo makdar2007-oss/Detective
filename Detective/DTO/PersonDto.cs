@@ -10,13 +10,20 @@ namespace Detective.DTO
         /// <summary>
         /// Уникальный идентификатор
         /// </summary>
-        public int Id { get; set; }
+        public Guid Id { get; set; }
+        /// <summary>
+        /// Имя человека
+        /// </summary>
+        public string FirstName { get; set; }
+        /// <summary>
+        /// Фамилия человека
+        /// </summary>
+        public string LastName { get; set; }
 
         /// <summary>
         /// Полное имя человека
         /// </summary>
-        public string FullName { get; set; }
-
+        public string FullName => $"{FirstName} {LastName}".Trim();
         /// <summary>
         /// Роль (детектив, подозреваемый, свидетель, потерпевший)
         /// </summary>

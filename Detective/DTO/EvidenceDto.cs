@@ -1,4 +1,6 @@
-﻿namespace Detective.DTO
+﻿using System;
+
+namespace Detective.DTO
 {
     /// <summary>
     /// DTO для передачи данных об улике
@@ -8,10 +10,10 @@
         /// <summary>
         /// Уникальный идентификатор улики
         /// </summary>
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         /// <summary>
-        /// Категория улики (физическая, цифровая и т.д.)
+        /// Категория улики 
         /// </summary>
         public string Category { get; set; }
 
